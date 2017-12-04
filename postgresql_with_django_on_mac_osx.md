@@ -128,7 +128,7 @@ template1 | iorionda | UTF8     | C       | C     | =c/iorionda          +
 
 ## ユーザーの作成
 
-Django向けにpostgresユーザーを作成する。開発環境なのでパスワードはなしでいい。
+Django向けにpostgresユーザーを作成する。
 まずは現在のユーザー一覧を確認する。
 
 ```
@@ -143,7 +143,8 @@ iorionda |       10 | t           | t        | t       | t            | ********
 続けてユーザーを作成する。
 
 ```
-% createuser postgres
+% createuser -P
+ postgres
 
 # 作成したユーザーが存在するか確認
 % psql -q -c'select * from pg_user' postgres
@@ -175,3 +176,27 @@ template1 | iorionda | UTF8     | C       | C     | =c/iorionda          +
 ```
 
 以上でMacのPostgreSQLの準備は終了。
+
+## Djangoのsettings.pyを編集する。
+
+```
+DATABASES = {
+    'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'DB_NAME',
+         'USER': 'USER_NAME',
+         'PASSWORD' : 'PASSWORD',
+         'HOST' : '127.0.0.1',
+         'PORT' : 5432,
+     }
+ }
+ ```
+
+ ## マイグレーションの実行
+
+ ```
+ % python manage.py migrate
+ ```
+
+ これでエラーが出なければ成功。
+ 
