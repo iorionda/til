@@ -58,19 +58,6 @@ exclude = '''
 '''
 ```
 
-また、後述の isort や black と共存することもできる
-
-```
-[flake8]
-max-line-length = 119
-ignore = E203,W503,W504
-
-[tool.isort]
-include_trailing_comma = true
-line_length = 119
-multi_line_output = 3
-```
-
 ## isort
 PEP8 では import に関して以下の記述がある
 
@@ -140,6 +127,9 @@ from .models import Contract
 - PyFlakes（pyflakes : コードのエラーチェック）
 - pycodestyle（pycodestyle : PEP8に準拠しているかチェック）
 - Ned Batchelder’s McCabe script（mccabe : 循環的複雑度のチェック）
+
+The Big OI' List of Rules
+https://lintlyci.github.io/Flake8Rules/
 
 ### how to install
 
